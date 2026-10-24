@@ -1,0 +1,22 @@
+.doomsec { background: var(--doom); color: var(--onDoom); position: relative; overflow: hidden; padding-block: 140px 130px; }
+.grain { position: absolute; inset: -50%; background-image: radial-gradient(rgba(255,255,255,.05) 1px, transparent 1.2px); background-size: 5px 5px; animation: grain 1s steps(4) infinite; pointer-events: none; }
+.doomgrid { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 64px; align-items: center; }
+.copy { display: flex; flex-direction: column; gap: 26px; }
+.doomsec :global(.lede) { color: var(--onDoom2); }
+.tag { background: transparent; color: var(--onDoom); box-shadow: inset 0 0 0 1.5px var(--onDoom2); }
+.tag i { background: var(--red); }
+
+.meter { border-radius: 32px; background: var(--doom2); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); padding: 36px; display: flex; flex-direction: column; gap: 14px; position: relative; overflow: hidden; }
+.big { font-family: var(--disp); font-size: clamp(72px, 9vw, 132px); line-height: .9; color: var(--orange); font-variant-numeric: tabular-nums; letter-spacing: -.03em; }
+.big small { font-size: .4em; color: var(--onDoom); }
+.ruler { height: 34px; border-radius: 8px; background: repeating-linear-gradient(90deg, rgba(255,255,255,.35) 0 1px, transparent 1px 10px), repeating-linear-gradient(90deg, rgba(255,255,255,.6) 0 2px, transparent 2px 50px); -webkit-mask-image: linear-gradient(180deg, #000 60%, transparent 60%); mask-image: linear-gradient(180deg, #000 60%, transparent 60%); background-position: var(--rx) 0; transition: background-position .2s linear; }
+
+.feedwords { display: flex; flex-wrap: wrap; gap: 8px; }
+.fw { font-family: var(--mono); font-size: 11.5px; padding: 7px 11px; border-radius: 999px; background: var(--doom3); color: var(--onDoom2); }
+.fw.r { background: rgba(240,69,58,.16); color: #FF8C84; }
+
+@keyframes grain { 25% { transform: translate(-2%, 1%); } 50% { transform: translate(1%, -2%); } 75% { transform: translate(2%, 2%); } }
+
+@media (max-width: 1000px) {
+  .doomgrid { grid-template-columns: minmax(0, 1fr); }
+}

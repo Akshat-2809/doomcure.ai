@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Doomproof — Home</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&amp;family=Schibsted+Grotesk:wght@400..800&amp;family=Martian+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#F3F3EF}
+a{color:#141414}a:hover{color:#141414}
+.d *{box-sizing:border-box}
+.d{--paper:#F3F3EF;--white:#FFFFFF;--ink:#141414;--ink2:#55554F;--ink3:#6E6E66;--line:#DDDCD4;--violet:#7B61FF;--mint:#12B088;--sky:#2F8FF0;--sun:#FFC93C;--doom:#121214;--doom2:#1E1E22;--doom3:#2C2C31;--onDoom:#E9E9EC;--onDoom2:#9C9CA6;--red:#F0453A;--disp:'Dela Gothic One','Schibsted Grotesk',system-ui,sans-serif;--body:'Schibsted Grotesk',system-ui,sans-serif;--mono:'Martian Mono',ui-monospace,Menlo,monospace;--spring:cubic-bezier(.34,1.56,.64,1);--ease:cubic-bezier(.2,.75,.1,1);font-family:var(--body);color:var(--ink);background:var(--paper);font-size:17px;line-height:1.55;overflow-x:clip;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1260px;margin:0 auto;padding-inline:clamp(20px,4vw,48px)}
+h1,h2,h3{margin:0;font-family:var(--disp);font-weight:400;letter-spacing:-.01em;text-wrap:balance}
+p{margin:0}
+.tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;padding:7px 12px;border-radius:999px;background:var(--white);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.tag i{width:8px;height:8px;border-radius:50%;background:var(--orange)}
+.h2{font-size:clamp(38px,5.4vw,78px);line-height:.98}
+.lede{font-size:19px;color:var(--ink2);max-width:56ch}
+.mono{font-family:var(--mono);font-size:11.5px}
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:0 26px;border-radius:999px;font:700 16px var(--body);text-decoration:none;border:0;cursor:pointer;transition:transform .35s var(--spring),box-shadow .35s var(--ease)}
+.btn-ink{background:var(--ink);color:var(--white);box-shadow:0 6px 0 0 var(--orange)}
+.btn-ink:hover{color:var(--white);transform:translateY(-3px);box-shadow:0 9px 0 0 var(--orange)}
+.btn-ink:active{transform:translateY(3px);box-shadow:0 3px 0 0 var(--orange)}
+.btn-line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}
+.btn-line:hover{color:var(--ink);background:var(--white);transform:translateY(-3px)}
+.d a:focus-visible,.d button:focus-visible,.d input:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
+/* nav */
+.nav{position:sticky;top:0;z-index:60;padding-block:14px}
+.navin{display:flex;align-items:center;gap:18px;padding:8px 8px 8px 18px;border-radius:999px;background:rgba(255,255,255,.82);backdrop-filter:blur(14px) saturate(1.5);-webkit-backdrop-filter:blur(14px) saturate(1.5);box-shadow:0 0 0 1.5px var(--ink),0 14px 30px -20px rgba(0,0,0,.35);flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.wm{font-family:var(--disp);font-size:22px;letter-spacing:-.02em;line-height:1}
+.navlinks{display:flex;gap:2px;flex:1;justify-content:center;flex-wrap:wrap}
+.nl{padding:9px 14px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;color:var(--ink2);transition:background .25s,color .25s}
+.nl:hover{background:var(--paper);color:var(--ink)}
+.nav .btn{min-height:44px;padding:0 20px;font-size:15px;box-shadow:none}
+.nav .btn:hover{box-shadow:none;transform:scale(1.04)}
+/* hero */
+.hero{position:relative;padding-block:40px 120px;overflow:hidden}
+.dots{position:absolute;inset:0;background-image:radial-gradient(rgba(20,20,20,.13) 1.2px,transparent 1.4px);background-size:26px 26px;-webkit-mask-image:radial-gradient(ellipse 60% 70% at 72% 45%,#000 10%,transparent 70%);mask-image:radial-gradient(ellipse 60% 70% at 72% 45%,#000 10%,transparent 70%);pointer-events:none}
+.herogrid{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:center;padding-top:40px}
+.herocopy{display:flex;flex-direction:column;gap:30px}
+.h1{font-size:clamp(54px,8vw,124px);line-height:.9;letter-spacing:-.025em}
+.h1 .w{display:inline-block;animation:drop .9s var(--spring) both}
+.h1 .w:nth-child(2){animation-delay:.08s}.h1 .w:nth-child(3){animation-delay:.16s}.h1 .w:nth-child(4){animation-delay:.24s}
+.hl{position:relative;z-index:0;white-space:nowrap}
+.hl::before{content:"";position:absolute;z-index:-1;left:-.06em;right:-.06em;top:.18em;bottom:.02em;background:var(--orange);border-radius:.12em;transform:scaleX(0) rotate(-1.5deg);transform-origin:left;animation:mark .7s var(--ease) .75s forwards}
+.glitch{position:relative;display:inline-block;color:var(--ink)}
+.glitch::before,.glitch::after{content:attr(data-t);position:absolute;inset:0;pointer-events:none}
+.glitch::before{color:var(--sky);transform:translate(-3px,0);clip-path:inset(0 0 60% 0);animation:g1 2.8s steps(1) infinite;mix-blend-mode:multiply}
+.glitch::after{color:var(--red);transform:translate(3px,0);clip-path:inset(55% 0 0 0);animation:g2 2.8s steps(1) infinite;mix-blend-mode:multiply}
+.strike{position:relative}
+.strike::after{content:"";position:absolute;left:-2%;right:-2%;top:52%;height:.11em;background:var(--ink);border-radius:9px;transform:scaleX(0) rotate(-4deg);transform-origin:left;animation:strike .5s var(--ease) 1.4s forwards}
+.herocopy .lede{animation:fadeup .8s var(--ease) .45s both}
+.wl{display:flex;gap:8px;padding:7px;border-radius:999px;background:var(--white);box-shadow:inset 0 0 0 2px var(--ink);max-width:520px;animation:fadeup .8s var(--ease) .55s both;flex-wrap:wrap}
+.wl input{flex:1;min-width:0;min-height:48px;border:0;background:transparent;padding:0 16px;font:500 16px var(--body);color:var(--ink)}
+.wl input:focus{outline:none}
+.wl .btn{min-height:48px;box-shadow:none}
+.wl .btn:hover{box-shadow:none;transform:scale(1.03)}
+.under{display:flex;align-items:center;gap:14px;flex-wrap:wrap;animation:fadeup .8s var(--ease) .65s both}
+.faces{display:flex}
+.faces span{width:30px;height:30px;border-radius:50%;box-shadow:0 0 0 2.5px var(--paper);margin-left:-8px}
+.faces span:first-child{margin-left:0}
+/* phone */
+.stage{position:relative;display:flex;justify-content:center;padding-block:20px;animation:rise 1.1s var(--spring) .2s both}
+.phone{position:relative;width:min(340px,100%);aspect-ratio:340/690;border-radius:52px;background:var(--ink);padding:12px;box-shadow:0 60px 90px -50px rgba(0,0,0,.55),inset 0 0 0 2px #3A3A40;transform:rotate(2.5deg);transition:transform .7s var(--spring)}
+.phone:hover{transform:rotate(0) scale(1.01)}
+.screen{position:relative;width:100%;height:100%;border-radius:41px;overflow:hidden;background:var(--doom)}
+.notch{position:absolute;z-index:9;top:10px;left:50%;transform:translateX(-50%);width:96px;height:28px;border-radius:20px;background:#000}
+.layer{position:absolute;inset:0;overflow:hidden}
+.feed{display:flex;flex-direction:column;gap:10px;padding:52px 12px 12px;animation:feed 16s linear infinite}
+.feed.slow{animation-duration:34s}
+.post{background:var(--doom2);border-radius:18px;padding:12px;display:flex;flex-direction:column;gap:8px;color:var(--onDoom2);filter:saturate(0)}
+.ph{display:flex;align-items:center;gap:8px}
+.av{width:26px;height:26px;border-radius:50%;background:var(--doom3);flex:none}
+.bar{height:8px;border-radius:9px;background:var(--doom3)}
+.post b{font-size:14px;line-height:1.3;color:#C9C9D0;font-weight:700}
+.badge{margin-left:auto;font-family:var(--mono);font-size:9.5px;padding:3px 7px;border-radius:999px;background:var(--red);color:#fff;filter:none}
+.media{height:96px;border-radius:12px;background:repeating-linear-gradient(45deg,var(--doom3) 0 10px,#26262B 10px 20px);animation:static 1.2s steps(3) infinite}
+.statusbar{position:absolute;z-index:8;left:0;right:0;top:0;height:46px;display:flex;align-items:flex-end;justify-content:space-between;padding:0 22px 6px;font-family:var(--mono);font-size:10px}
+.doomtime{position:absolute;z-index:8;left:12px;right:12px;bottom:12px;padding:10px 12px;border-radius:14px;background:rgba(240,69,58,.16);color:#FF8C84;font-family:var(--mono);font-size:10.5px;display:flex;justify-content:space-between;backdrop-filter:blur(6px)}
+.proof{background:var(--paper)}
+.card{border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:8px;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.card .kick{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase}
+.card b{font-family:var(--disp);font-weight:400;font-size:19px;line-height:1.1}
+.card p{font-size:13px;line-height:1.4}
+.c1{background:var(--orange)}.c2{background:var(--violet);color:var(--white)}.c3{background:var(--mint)}.c4{background:var(--sun)}.c5{background:var(--sky)}
+.c2 b,.c2 p,.c2 .kick{color:var(--white)}
+.prooftime{position:absolute;z-index:8;left:12px;right:12px;bottom:12px;padding:10px 12px;border-radius:14px;background:var(--ink);color:var(--white);font-family:var(--mono);font-size:10.5px;display:flex;justify-content:space-between}
+.divider{position:absolute;z-index:10;top:0;bottom:0;width:3px;background:var(--white);transform:translateX(-50%);box-shadow:0 0 0 1.5px var(--ink)}
+.knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:var(--white);box-shadow:inset 0 0 0 2px var(--ink),0 10px 20px -8px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;color:var(--ink)}
+.side{position:absolute;z-index:11;top:54px;font-family:var(--mono);font-size:10px;letter-spacing:.08em;padding:5px 9px;border-radius:999px}
+.side.l{left:14px;background:var(--doom3);color:var(--onDoom)}
+.side.r{right:14px;background:var(--ink);color:var(--white)}
+.range{position:absolute;z-index:12;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.sticker{position:absolute;z-index:13;width:132px;height:132px;left:-8px;top:24px;animation:spin 16s linear infinite}
+.sticker svg{width:100%;height:100%}
+.hint{position:absolute;z-index:13;right:-6px;bottom:84px;background:var(--white);border-radius:16px;padding:10px 14px;box-shadow:inset 0 0 0 1.5px var(--ink),0 6px 0 var(--ink);font-weight:700;font-size:14px;transform:rotate(-4deg);animation:bob 3s ease-in-out infinite}
+/* marquee */
+.marq{background:var(--ink);color:var(--white);overflow:hidden;padding-block:22px;transform:rotate(-1.5deg);margin-inline:-20px;border-block:2px solid var(--ink)}
+.track{display:flex;width:max-content;animation:marq 36s linear infinite}
+.track span{display:inline-flex;align-items:center;gap:34px;padding-right:34px;font-family:var(--disp);font-size:28px;white-space:nowrap}
+.track s{text-decoration-color:var(--orange);text-decoration-thickness:4px;color:#8A8A92}
+.track em{font-style:normal;color:var(--orange)}
+/* doom section */
+.doomsec{background:var(--doom);color:var(--onDoom);position:relative;overflow:hidden;padding-block:140px 130px}
+.grain{position:absolute;inset:-50%;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1.2px);background-size:5px 5px;animation:grain 1s steps(4) infinite;pointer-events:none}
+.doomgrid{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:center}
+.doomsec .lede{color:var(--onDoom2)}
+.meter{border-radius:32px;background:var(--doom2);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);padding:36px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.meter .big{font-family:var(--disp);font-size:clamp(72px,9vw,132px);line-height:.9;color:var(--orange);font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.meter .big small{font-size:.4em;color:var(--onDoom)}
+.ruler{height:34px;border-radius:8px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.35) 0 1px,transparent 1px 10px),repeating-linear-gradient(90deg,rgba(255,255,255,.6) 0 2px,transparent 2px 50px);-webkit-mask-image:linear-gradient(#000 50%,transparent 50%);mask-image:linear-gradient(180deg,#000 60%,transparent 60%);background-position:var(--rx) 0;transition:background-position .2s linear}
+.feedwords{display:flex;flex-wrap:wrap;gap:8px}
+.fw{font-family:var(--mono);font-size:11.5px;padding:7px 11px;border-radius:999px;background:var(--doom3);color:var(--onDoom2)}
+.fw.r{background:rgba(240,69,58,.16);color:#FF8C84}
+/* idea */
+.sec{padding-block:130px}
+.quote{font-family:var(--disp);font-size:clamp(30px,3.8vw,54px);line-height:1.08;letter-spacing:-.01em;max-width:24ch}
+.quote .q{color:var(--orange)}
+.attr{font-family:var(--mono);font-size:12px;color:var(--ink3);margin-top:22px;display:block}
+.pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:80px}
+.pillar{background:var(--white);border-radius:32px;padding:28px;display:flex;flex-direction:column;gap:16px;box-shadow:inset 0 0 0 2px var(--ink),0 8px 0 var(--ink);transition:transform .45s var(--spring),box-shadow .45s var(--spring);min-height:440px}
+.pillar:hover{transform:translateY(-8px) rotate(-1deg);box-shadow:inset 0 0 0 2px var(--ink),0 16px 0 var(--ink)}
+.pillar h3{font-size:30px;line-height:1}
+.pillar p{color:var(--ink2);font-size:16px}
+.vis{flex:1;border-radius:22px;background:var(--paper);position:relative;overflow:hidden;min-height:190px;display:flex;align-items:center;justify-content:center}
+.orbit{position:absolute;width:150px;height:150px;border-radius:50%;border:1.5px dashed rgba(20,20,20,.3);animation:spin 12s linear infinite}
+.orbit i{position:absolute;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-style:normal;font-size:15px;box-shadow:inset 0 0 0 1.5px var(--ink)}
+.orbit i:nth-child(1){top:-15px;left:60px;background:var(--sun)}
+.orbit i:nth-child(2){bottom:10px;left:-6px;background:var(--mint)}
+.orbit i:nth-child(3){bottom:10px;right:-6px;background:var(--violet);color:#fff}
+.core{width:62px;height:62px;border-radius:50%;background:var(--orange);box-shadow:inset 0 0 0 2px var(--ink);display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-size:28px;animation:pulse 2.4s ease-in-out infinite}
+.keep{width:100%;padding:22px;display:flex;flex-direction:column;gap:14px}
+.krow{display:flex;flex-direction:column;gap:6px}
+.krow span{font-family:var(--mono);font-size:10.5px;color:var(--ink2)}
+.kbar{height:22px;border-radius:8px;box-shadow:inset 0 0 0 1.5px var(--ink);overflow:hidden;background:var(--white)}
+.kbar i{display:block;height:100%}
+.kbar.fade i{background:var(--ink3);animation:fadeout 3.2s var(--ease) infinite}
+.kbar.stay i{background:var(--mint);animation:fill 3.2s var(--ease) infinite}
+.deck{position:relative;width:100%;height:100%;min-height:190px}
+.dc{position:absolute;left:18px;right:18px;top:18px;bottom:52px;border-radius:18px;padding:14px;box-shadow:inset 0 0 0 1.5px var(--ink);display:flex;flex-direction:column;gap:6px;transition:transform .6s var(--spring),opacity .4s}
+.dc b{font-family:var(--disp);font-weight:400;font-size:17px;line-height:1.1}
+.dc p{font-size:12.5px;line-height:1.35}
+.p0{z-index:4;transform:none}
+.p1{z-index:3;transform:translateY(-8px) scale(.95) rotate(3deg)}
+.p2{z-index:2;transform:translateY(-16px) scale(.9) rotate(-3deg)}
+.p3{z-index:1;transform:translate(-120%,20px) rotate(-18deg);opacity:0}
+.next{position:absolute;z-index:6;left:50%;bottom:8px;transform:translateX(-50%);min-height:38px;padding:0 16px;border-radius:999px;border:0;background:var(--ink);color:#fff;font:700 13px var(--body);cursor:pointer;transition:transform .3s var(--spring)}
+.next:hover{transform:translateX(-50%) scale(1.06)}
+/* story */
+.story{background:var(--violet);color:var(--white);padding-block:120px;timeline-scope:--hx;overflow:hidden}
+.story .tag{background:transparent;box-shadow:inset 0 0 0 1.5px var(--white);color:var(--white)}
+.story .tag i{background:var(--sun)}
+.storyhead{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+.arrows{display:flex;gap:10px}
+.arw{width:56px;height:56px;border-radius:50%;border:0;background:var(--white);color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .3s var(--spring)}
+.arw:hover{transform:scale(1.1)}
+.hs{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:56px clamp(20px,4vw,48px) 30px;scroll-timeline:--hx x;scrollbar-width:none;scroll-behavior:smooth}
+.hs::-webkit-scrollbar{display:none}
+.hcard{flex:none;width:min(360px,80vw);scroll-snap-align:start;border-radius:30px;padding:28px;display:flex;flex-direction:column;gap:14px;min-height:320px;background:var(--white);color:var(--ink);box-shadow:0 8px 0 rgba(20,20,20,.9);position:relative;transition:transform .4s var(--spring)}
+.hcard:hover{transform:translateY(-6px) rotate(-1deg)}
+.hcard .n{font-family:var(--mono);font-size:11.5px;color:var(--ink3)}
+.hcard h3{font-size:30px;line-height:1}
+.hcard p{color:var(--ink2);font-size:16px}
+.hcard .ic{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 1.5px var(--ink)}
+.hcard.final{background:var(--sun)}
+.prog{height:6px;border-radius:9px;background:rgba(255,255,255,.25);overflow:hidden;margin-inline:clamp(20px,4vw,48px)}
+.prog i{display:block;height:100%;background:var(--white);width:30%;border-radius:9px}
+/* founder */
+.fgrid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:64px;align-items:start}
+.fcard{position:sticky;top:110px;border-radius:36px;background:var(--orange);padding:28px;box-shadow:inset 0 0 0 2px var(--ink),0 10px 0 var(--ink);display:flex;flex-direction:column;gap:18px}
+.fphoto{aspect-ratio:1;max-width:100%;border-radius:26px;background:var(--white);box-shadow:inset 0 0 0 2px var(--ink);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.fphoto .ini{font-family:var(--disp);font-size:120px;line-height:1}
+.fphoto .lab{position:absolute;left:14px;bottom:12px;font-family:var(--mono);font-size:10.5px;color:var(--ink3)}
+.triad{display:flex;flex-wrap:wrap;gap:8px}
+.triad span{font-weight:700;font-size:14px;padding:8px 14px;border-radius:999px;background:var(--white);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.chapters{display:flex;flex-direction:column;gap:14px}
+.ch{border-radius:26px;background:var(--white);padding:24px;box-shadow:inset 0 0 0 1.5px var(--line);display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;transition:box-shadow .3s,transform .4s var(--spring)}
+.ch:hover{box-shadow:inset 0 0 0 2px var(--ink);transform:translateX(6px)}
+.ch .yr{font-family:var(--mono);font-size:12px;color:var(--ink3);padding-top:4px}
+.ch h3{font-size:22px;line-height:1.1;margin-bottom:6px}
+.ch p{color:var(--ink2);font-size:15.5px}
+.ch ul{margin:10px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.ch li{font-family:var(--mono);font-size:10.5px;padding:5px 9px;border-radius:999px;background:var(--paper)}
+/* waitlist */
+.cta{background:var(--orange);position:relative;overflow:hidden;padding-block:140px}
+.ctain{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px}
+.ctah{font-size:clamp(48px,8vw,128px);line-height:.9;letter-spacing:-.02em}
+.cta .lede{color:var(--ink)}
+.fly{position:absolute;width:120px;height:150px;border-radius:20px;box-shadow:inset 0 0 0 2px var(--ink),0 6px 0 var(--ink);pointer-events:none}
+.fly1{left:6%;top:16%;background:var(--violet);transform:rotate(-14deg);animation:floaty 7s ease-in-out infinite alternate}
+.fly2{right:7%;top:12%;background:var(--sun);transform:rotate(12deg);animation:floaty 8s ease-in-out -2s infinite alternate}
+.fly3{left:12%;bottom:10%;background:var(--mint);transform:rotate(8deg);animation:floaty 6s ease-in-out -1s infinite alternate}
+.fly4{right:12%;bottom:12%;background:var(--white);transform:rotate(-8deg);animation:floaty 9s ease-in-out -3s infinite alternate}
+.done{display:flex;flex-direction:column;align-items:center;gap:14px;animation:popin .7s var(--spring) both}
+.done .tick{width:84px;height:84px;border-radius:50%;background:var(--ink);color:var(--orange);display:flex;align-items:center;justify-content:center}
+.burst{position:relative;width:1px;height:1px}
+.burst i{position:absolute;width:18px;height:24px;border-radius:5px;box-shadow:inset 0 0 0 1.5px var(--ink);animation:burst 1s var(--ease) both}
+.burst i:nth-child(1){background:var(--violet);--x:-160px;--y:-120px;--r:-40deg}
+.burst i:nth-child(2){background:var(--sun);--x:150px;--y:-140px;--r:30deg}
+.burst i:nth-child(3){background:var(--mint);--x:-200px;--y:10px;--r:60deg}
+.burst i:nth-child(4){background:var(--white);--x:210px;--y:-20px;--r:-50deg}
+.burst i:nth-child(5){background:var(--sky);--x:-90px;--y:-190px;--r:15deg}
+.burst i:nth-child(6){background:var(--ink);--x:80px;--y:-200px;--r:-20deg}
+/* footer */
+.foot{background:var(--ink);color:var(--white);padding-top:72px;overflow:hidden}
+.footrow{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-start}
+.foot a{color:var(--white);text-decoration:none}
+.foot a:hover{color:var(--orange)}
+.fl{display:flex;gap:28px;flex-wrap:wrap;font-weight:600}
+.giant{font-family:var(--disp);font-size:clamp(64px,17vw,250px);line-height:.85;letter-spacing:-.03em;text-align:center;padding-block:40px 10px;white-space:nowrap}
+.giant span{display:inline-block;transition:transform .5s var(--spring),color .3s}
+.giant span:hover{transform:translateY(-14px) rotate(-6deg);color:var(--orange)}
+.legal{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:22px 34px;border-top:1px solid rgba(255,255,255,.14);font-family:var(--mono);font-size:11px;color:#A4A4AC}
+/* scroll meter */
+.pill{position:fixed;z-index:70;left:max(18px,env(safe-area-inset-left,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:10px;padding:10px 16px 10px 10px;border-radius:999px;background:var(--ink);color:var(--white);font-family:var(--mono);font-size:11.5px;box-shadow:0 14px 30px -12px rgba(0,0,0,.5);transform:translateY(140%);transition:transform .6s var(--spring)}
+.pill.show{transform:none}
+.pill b{color:var(--orange);font-weight:500;font-variant-numeric:tabular-nums}
+.pill .ring{width:26px;height:26px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;color:var(--ink)}
+/* scroll-driven */
+@supports (animation-timeline: view()) {
+.rv{animation:rv linear both;animation-timeline:view();animation-range:entry 5% entry 65%}
+.prog i{width:100%;transform-origin:left;animation:progx linear both;animation-timeline:--hx}
+.giant{animation:gscale linear both;animation-timeline:view();animation-range:entry 0% cover 50%}
+}
+@keyframes rv{from{opacity:0;transform:translateY(70px) rotate(1.5deg)}}
+@keyframes progx{from{transform:scaleX(.08)}to{transform:scaleX(1)}}
+@keyframes gscale{from{transform:translateY(40%) scale(.8);opacity:.2}}
+@keyframes drop{from{transform:translateY(-60px) rotate(-6deg);opacity:0}}
+@keyframes mark{to{transform:scaleX(1) rotate(-1.5deg)}}
+@keyframes strike{to{transform:scaleX(1) rotate(-4deg)}}
+@keyframes fadeup{from{opacity:0;transform:translateY(20px)}}
+@keyframes rise{from{opacity:0;transform:translateY(80px) rotate(6deg)}}
+@keyframes feed{to{transform:translateY(-50%)}}
+@keyframes static{33%{background-position:3px 2px}66%{background-position:-2px 1px}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes bob{50%{transform:rotate(-4deg) translateY(-8px)}}
+@keyframes marq{to{transform:translateX(-50%)}}
+@keyframes grain{25%{transform:translate(-2%,1%)}50%{transform:translate(1%,-2%)}75%{transform:translate(2%,2%)}}
+@keyframes pulse{50%{transform:scale(1.12)}}
+@keyframes fadeout{0%{width:100%;opacity:1}70%,100%{width:12%;opacity:.35}}
+@keyframes fill{0%{width:10%}60%,100%{width:92%}}
+@keyframes floaty{to{translate:0 -26px}}
+@keyframes popin{from{opacity:0;transform:scale(.6)}}
+@keyframes burst{from{transform:translate(0,0) rotate(0);opacity:1}to{transform:translate(var(--x),var(--y)) rotate(var(--r));opacity:0}}
+@keyframes g1{0%,86%{transform:translate(0,0);opacity:0}88%{transform:translate(-4px,1px);opacity:1}92%{transform:translate(3px,-1px);opacity:1}96%{opacity:0}}
+@keyframes g2{0%,86%{transform:translate(0,0);opacity:0}89%{transform:translate(4px,-1px);opacity:1}93%{transform:translate(-3px,1px);opacity:1}97%{opacity:0}}
+@media (max-width:1000px){
+.herogrid,.doomgrid,.fgrid{grid-template-columns:minmax(0,1fr)}
+.pillars{grid-template-columns:minmax(0,1fr)}
+.pillar{min-height:0}
+.fcard{position:relative;top:0}
+.sticker{left:0;width:104px;height:104px}
+.sec{padding-block:96px}
+.fly{display:none}
+}
+@media (max-width:620px){
+.navlinks{display:none}
+.ch{grid-template-columns:minmax(0,1fr);gap:6px}
+.hint{right:0}
+.marq .track span{font-size:21px}
+}
+@media (prefers-reduced-motion:reduce){.d *,.d *::before,.d *::after{animation:none!important;transition:none!important}.hl::before{transform:scaleX(1) rotate(-1.5deg)}.strike::after{transform:scaleX(1) rotate(-4deg)}}
+</style>
+</helmet>
+<div class="d" style="--orange: {{accent}}">
+
+<!-- NAV -->
+<header class="nav">
+<div class="wrap">
+<div class="navin">
+<a class="logo" href="#top" aria-label="Doomproof home">
+<svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><rect x="9" y="5" width="22" height="28" rx="6" fill="#7B61FF" stroke="#141414" stroke-width="2" transform="rotate(-12 20 19)"></rect><rect x="9" y="7" width="22" height="28" rx="6" fill="{{accent}}" stroke="#141414" stroke-width="2"></rect><path d="M20 14 C20.6 18.6 21.4 19.4 26 20 C21.4 20.6 20.6 21.4 20 26 C19.4 21.4 18.6 20.6 14 20 C18.6 19.4 19.4 18.6 20 14 Z" fill="#141414"></path></svg>
+<span class="wm">doomproof</span>
+</a>
+<nav class="navlinks" aria-label="Main">
+<a class="nl" href="#problem">The problem</a>
+<a class="nl" href="#idea">The idea</a>
+<a class="nl" href="#story">The story</a>
+<a class="nl" href="#founder">Founder</a>
+</nav>
+<a class="btn btn-ink" href="#waitlist">Join the waitlist</a>
+</div>
+</div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+<div class="dots" aria-hidden="true"></div>
+<div class="wrap herogrid">
+<div class="herocopy">
+<span class="tag" style="animation: fadeup .8s var(--ease) both"><i></i>Early stage · Building now</span>
+<h1 class="h1"><span class="w">An</span> <span class="w hl">antidote</span> <span class="w">to</span><br><span class="w"><span class="glitch strike" data-t="doom">doom</span>scrolling.</span></h1>
+<p class="lede">An AI-powered learning experience that makes what you take in actually stay with you. Built for an era of information overload.</p>
+<sc-if value="{{notJoined}}" hint-placeholder-val="{{ true }}">
+<form class="wl" onSubmit="{{join}}">
+<label for="hero-email" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Email address</label>
+<input id="hero-email" type="email" autocomplete="email" placeholder="you@email.com">
+<button type="submit" class="btn btn-ink">Get early access</button>
+</form>
+</sc-if>
+<sc-if value="{{joined}}" hint-placeholder-val="{{ false }}">
+<div class="wl" style="padding: 14px 22px; align-items: center; gap: 12px; animation: popin .6s var(--spring) both"><strong>You're on the list.</strong><span style="color: var(--ink2)">More on this soon.</span></div>
+</sc-if>
+<div class="under">
+<div class="faces" aria-hidden="true"><span style="background: var(--violet)"></span><span style="background: var(--mint)"></span><span style="background: var(--sun)"></span><span style="background: var(--sky)"></span></div>
+<span style="color: var(--ink2); font-size: 15px">Started as a side project. Now used by real people around the world.</span>
+</div>
+</div>
+
+<div class="stage">
+<div class="sticker" aria-hidden="true">
+<svg viewBox="0 0 132 132"><defs><path id="circ" d="M66,66 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0"></path></defs><circle cx="66" cy="66" r="64" fill="#FFC93C" stroke="#141414" stroke-width="2"></circle><text font-family="Martian Mono, monospace" font-size="10.5" letter-spacing="2.2" fill="#141414"><textPath href="#circ">AI-POWERED LEARNING · DOOMPROOF · </textPath></text><path d="M66 48 C67.4 59 69 60.6 80 62 C69 63.4 67.4 65 66 76 C64.6 65 63 63.4 52 62 C63 60.6 64.6 59 66 48 Z" fill="#141414" transform="translate(0 4)"></path></svg>
+</div>
+<div class="phone">
+<div class="screen">
+<div class="notch"></div>
+<!-- doom layer -->
+<div class="layer" aria-hidden="true">
+<div class="statusbar" style="color: var(--onDoom2)"><span>02:47</span><span>●●● 4%</span></div>
+<div class="feed">
+<div class="post"><div class="ph"><span class="av"></span><span class="bar" style="width: 70px"></span><span class="badge">99+</span></div><b>You won't believe what happened next</b><div class="media"></div></div>
+<div class="post"><div class="ph"><span class="av"></span><span class="bar" style="width: 90px"></span><span class="badge">LIVE</span></div><b>Everyone is angry about this. Again.</b><div class="bar" style="width: 80%"></div><div class="bar" style="width: 55%"></div></div>
+<div class="post"><div class="ph"><span class="av"></span><span class="bar" style="width: 60px"></span></div><b>Part 4 of 37. Wait for it…</b><div class="media"></div></div>
+<div class="post"><div class="ph"><span class="av"></span><span class="bar" style="width: 84px"></span><span class="badge">NEW</span></div><b>BREAKING: one more thing to worry about</b><div class="bar" style="width: 70%"></div></div>
+<div class="post"><div class="ph"><span class="av"></span><span class="bar" style="width: 70px"></span><span class="badge">99+</span></div><b>You won't believe what happened next</b><div class="media"></div></div>
+<div class="post"><div class="ph"><span class="av"></span><span class="bar" style="width: 90px"></span><span class="badge">LIVE</span></div><b>Everyone is angry about this. Again.</b><div class="bar" style="width: 80%"></div><div class="bar" style="width: 55%"></div></div>
+<div class="post"><div class="ph"><span class="av"></span><span class="bar" style="width: 60px"></span></div><b>Part 4 of 37. Wait for it…</b><div class="media"></div></div>
+<div class="post"><div class="ph"><span class="av"></span><span class="bar" style="width: 84px"></span><span class="badge">NEW</span></div><b>BREAKING: one more thing to worry about</b><div class="bar" style="width: 70%"></div></div>
+</div>
+<div class="doomtime"><span>Scrolled tonight</span><span>2h 14m · remembered: ?</span></div>
+</div>
+<!-- proof layer -->
+<div class="layer proof" style="clip-path: inset(0 0 0 {{split}}%)" aria-hidden="true">
+<div class="statusbar" style="color: var(--ink)"><span>19:30</span><span>●●● 82%</span></div>
+<div class="feed slow">
+<div class="card c1"><span class="kick">Science · 1 min</span><b>Why is the sky blue?</b><p>Air scatters blue light from the sun more than red, so blue reaches you from every direction.</p></div>
+<div class="card c2"><span class="kick">Money · 1 min</span><b>How does compound interest grow?</b><p>You earn interest on your interest, so growth speeds up the longer you leave it.</p></div>
+<div class="card c3"><span class="kick">Ideas · 1 min</span><b>What did the Stoics mean by control?</b><p>Sort what you can control from what you can't, and put your energy into the first.</p></div>
+<div class="card c4"><span class="kick">Body · 1 min</span><b>How do vaccines teach your body?</b><p>They show your immune system a harmless preview of a germ, so it knows the real one faster.</p></div>
+<div class="card c1"><span class="kick">Science · 1 min</span><b>Why is the sky blue?</b><p>Air scatters blue light from the sun more than red, so blue reaches you from every direction.</p></div>
+<div class="card c2"><span class="kick">Money · 1 min</span><b>How does compound interest grow?</b><p>You earn interest on your interest, so growth speeds up the longer you leave it.</p></div>
+<div class="card c3"><span class="kick">Ideas · 1 min</span><b>What did the Stoics mean by control?</b><p>Sort what you can control from what you can't, and put your energy into the first.</p></div>
+<div class="card c4"><span class="kick">Body · 1 min</span><b>How do vaccines teach your body?</b><p>They show your immune system a harmless preview of a germ, so it knows the real one faster.</p></div>
+</div>
+<div class="prooftime"><span>Learned tonight</span><span>4 ideas · kept</span></div>
+</div>
+<span class="side l" aria-hidden="true">DOOM</span>
+<span class="side r" aria-hidden="true">PROOF</span>
+<div class="divider" style="left: {{split}}%" aria-hidden="true"><span class="knob"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"></path></svg></span></div>
+<input class="range" type="range" min="0" max="100" value="{{split}}" aria-label="Drag to compare a doomscrolling feed with a Doomproof feed" onInput="{{onSplit}}" onPointerDown="{{onTouch}}">
+</div>
+</div>
+<span class="hint" aria-hidden="true">Drag to cure the feed →</span>
+</div>
+</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marq" aria-hidden="true">
+<div class="track">
+<span><s>you won't believe</s><em>why the sky is blue</em><s>part 4 of 37</s><em>how memory works</em><s>breaking: again</s><em>what the Stoics meant</em><s>wait for it</s><em>how money compounds</em></span>
+<span><s>you won't believe</s><em>why the sky is blue</em><s>part 4 of 37</s><em>how memory works</em><s>breaking: again</s><em>what the Stoics meant</em><s>wait for it</s><em>how money compounds</em></span>
+</div>
+</div>
+
+<!-- PROBLEM -->
+<section class="doomsec" id="problem">
+<div class="grain" aria-hidden="true"></div>
+<div class="wrap doomgrid">
+<div class="rv" style="display: flex; flex-direction: column; gap: 26px">
+<span class="tag" style="background: transparent; color: var(--onDoom); box-shadow: inset 0 0 0 1.5px var(--onDoom2)"><i style="background: var(--red)"></i>The problem</span>
+<h2 class="h2">Information overload is the default setting.</h2>
+<p class="lede">The feed never ends, so it never feels finished. We take in more than ever and keep very little of it. The scroll is designed to keep you scrolling, not to leave you knowing more.</p>
+<div class="feedwords"><span class="fw r">autoplay</span><span class="fw">infinite scroll</span><span class="fw r">99+ unread</span><span class="fw">pull to refresh</span><span class="fw r">streak at risk</span><span class="fw">for you</span></div>
+</div>
+<div class="meter rv" role="status" aria-live="off">
+<span class="mono" style="color: var(--onDoom2)">Live · measured on this page</span>
+<div class="big">{{metres}}<small> m</small></div>
+<p style="font-size: 18px">That's how far you've scrolled on this page so far. Now picture a whole evening of it, and ask how much you'd remember tomorrow.</p>
+<div class="ruler" style="--rx: {{rulerX}}" aria-hidden="true"></div>
+</div>
+</div>
+</section>
+
+<!-- IDEA -->
+<section class="sec" id="idea">
+<div class="wrap">
+<div class="rv">
+<span class="tag"><i></i>The idea</span>
+<p class="quote" style="margin-top: 28px"><span class="q">“</span>An AI-powered learning experience that enhances knowledge retention and engagement.<span class="q">”</span></p>
+<span class="attr">From Thenn Arasan, founder</span>
+</div>
+<div class="pillars">
+<div class="pillar rv">
+<div class="vis" aria-hidden="true"><div class="orbit"><i>?</i><i>!</i><i>?</i></div><div class="core">?</div></div>
+<h3>Curiosity first</h3>
+<p>It starts from what you actually want to know. Curiosity is the compass, not the algorithm's idea of what keeps you hooked.</p>
+</div>
+<div class="pillar rv">
+<div class="vis" aria-hidden="true"><div class="keep">
+<div class="krow"><span>What you scroll past</span><div class="kbar fade"><i></i></div></div>
+<div class="krow"><span>What you learn here</span><div class="kbar stay"><i></i></div></div>
+</div></div>
+<h3>Made to stay</h3>
+<p>The point is retention. What you learn should still be there tomorrow, next week and when you need it.</p>
+</div>
+<div class="pillar rv">
+<div class="vis"><div class="deck">
+<sc-for list="{{deck}}" as="c" hint-placeholder-count="4">
+<div class="dc {{c.cls}}" style="background: {{c.bg}}; color: {{c.fg}}" aria-hidden="{{c.hidden}}"><span class="mono">{{c.kick}}</span><b>{{c.title}}</b><p>{{c.text}}</p></div>
+</sc-for>
+<button type="button" class="next" onClick="{{nextCard}}">Next card →</button>
+</div></div>
+<h3>As engaging as a feed</h3>
+<p>The pull of a feed, pointed at something that leaves you better off. Go on, tap through a few.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story">
+<div class="wrap storyhead rv">
+<div style="display: flex; flex-direction: column; gap: 22px; max-width: 760px">
+<span class="tag"><i></i>The story</span>
+<h2 class="h2">The butterfly effect.</h2>
+<p class="lede" style="color: rgba(255,255,255,.85)">It didn't start with a pitch deck. It started with a conversation in a community, and a founder who built something in reply.</p>
+</div>
+<div class="arrows">
+<button type="button" class="arw" aria-label="Previous" onClick="{{prev}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg></button>
+<button type="button" class="arw" aria-label="Next" onClick="{{next}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"></path></svg></button>
+</div>
+</div>
+<div class="hs" data-hs="1" tabindex="0" aria-label="Story, scroll sideways">
+<div class="hcard"><span class="n">01</span><span class="ic" style="background: var(--sun)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.6-5.2A8.5 8.5 0 1 1 21 12z"></path></svg></span><h3>A thread</h3><p>Someone in a founder community started a conversation. People jumped in and ideas flew.</p></div>
+<div class="hcard"><span class="n">02</span><span class="ic" style="background: var(--mint)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"></path></svg></span><h3>A reply, built</h3><p>A member made a request. Thenn built something in response, and the community loved it.</p></div>
+<div class="hcard"><span class="n">03</span><span class="ic" style="background: var(--sky)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6V14M12 17h.01"></path></svg></span><h3>A hypothesis</h3><p>The spark became a question worth answering, then a side project.</p></div>
+<div class="hcard"><span class="n">04</span><span class="ic" style="background: var(--orange)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"></path></svg></span><h3>A prototype in a week</h3><p>A mentor asked why not build one. One week later, there was a working prototype.</p></div>
+<div class="hcard"><span class="n">05</span><span class="ic" style="background: var(--violet)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"></path></svg></span><h3>Real users, worldwide</h3><p>Real people and real traffic from around the world started showing up.</p></div>
+<div class="hcard final"><span class="n">06</span><span class="ic" style="background: var(--white)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.8 5.6 3.4 8.2 9 9-5.6.8-8.2 3.4-9 9-.8-5.6-3.4-8.2-9-9 5.6-.8 8.2-3.4 9-9z"></path></svg></span><h3>A company</h3><p>Now a team, building it properly. More on this soon.</p></div>
+</div>
+<div class="prog" aria-hidden="true"><i></i></div>
+</section>
+
+<!-- FOUNDER -->
+<section class="sec" id="founder">
+<div class="wrap fgrid">
+<div class="fcard rv">
+<div class="fphoto"><span class="ini">TA</span><span class="lab">[Founder photo]</span></div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<span style="font-family: var(--disp); font-size: 32px; line-height: 1">Thenn Arasan</span>
+<span class="mono">Founder &amp; CEO · Bengaluru · BITS Pilani</span>
+</div>
+<div class="triad"><span>Design</span><span>Engineering</span><span>Product</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 28px">
+<div class="rv" style="display: flex; flex-direction: column; gap: 22px">
+<span class="tag"><i></i>The founder</span>
+<h2 class="h2" style="font-size: clamp(34px, 4.2vw, 60px)">Three skills from three chapters, finally in one place.</h2>
+<p class="lede">In college he spent more time on design and animation than on code. Then came years of building products as an engineer. Then the product lens that tied it together. In 2025 he gave himself 365 days to follow his curiosity, and this is what it led to.</p>
+</div>
+<div class="chapters">
+<div class="ch rv"><span class="yr">2025 –</span><div><h3>Founder &amp; CEO, Doomproof</h3><p>Building an AI-powered learning experience for an era of information overload.</p></div></div>
+<div class="ch rv"><span class="yr">2018 – 2024</span><div><h3>Shopmatic · Engineering Manager</h3><p>One of the founding engineers in India. Led the rebuild of merchant storefronts in Next.js for 500,000+ stores, and turned a three-page checkout into one page.</p><ul><li>−32% checkout drop-offs</li><li>+22% merchant sign-ups</li><li>−30% bounce rate</li></ul></div></div>
+<div class="ch rv"><span class="yr">2017 – 2018</span><div><h3>RoofandFloor · Senior Software Engineer</h3><p>Built features in React for a real-estate platform from The Hindu Group, including a lighter landing page that doubled conversion.</p></div></div>
+<div class="ch rv"><span class="yr">2010 – 2017</span><div><h3>Capgemini · Software Engineer</h3><p>System architecture for General Motors in-car interfaces, including the instrument cluster and head-up display, and web apps for operators of GE Healthcare CT scanners.</p></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- WAITLIST -->
+<section class="cta" id="waitlist">
+<span class="fly fly1" aria-hidden="true"></span><span class="fly fly2" aria-hidden="true"></span><span class="fly fly3" aria-hidden="true"></span><span class="fly fly4" aria-hidden="true"></span>
+<div class="wrap ctain">
+<span class="tag"><i style="background: var(--ink)"></i>Early access</span>
+<h2 class="ctah rv">Make your scroll<br>doomproof.</h2>
+<p class="lede">We're building now. Leave your email and you'll be first to try it.</p>
+<sc-if value="{{notJoined}}" hint-placeholder-val="{{ true }}">
+<form class="wl" style="width: 100%" onSubmit="{{join}}">
+<label for="cta-email" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Email address</label>
+<input id="cta-email" type="email" autocomplete="email" placeholder="you@email.com">
+<button type="submit" class="btn btn-ink">Join the waitlist</button>
+</form>
+</sc-if>
+<sc-if value="{{joined}}" hint-placeholder-val="{{ false }}">
+<div class="done">
+<div class="burst" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<span class="tick"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"></path></svg></span>
+<strong style="font-family: var(--disp); font-size: 32px; font-weight: 400">You're on the list.</strong>
+<span>More on this soon.</span>
+</div>
+</sc-if>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="foot">
+<div class="wrap">
+<div class="footrow">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 360px">
+<a class="logo" href="#top" aria-label="Doomproof home">
+<svg width="32" height="32" viewBox="0 0 40 40" aria-hidden="true"><rect x="9" y="5" width="22" height="28" rx="6" fill="#7B61FF" stroke="#FFFFFF" stroke-width="2" transform="rotate(-12 20 19)"></rect><rect x="9" y="7" width="22" height="28" rx="6" fill="{{accent}}" stroke="#FFFFFF" stroke-width="2"></rect><path d="M20 14 C20.6 18.6 21.4 19.4 26 20 C21.4 20.6 20.6 21.4 20 26 C19.4 21.4 18.6 20.6 14 20 C18.6 19.4 19.4 18.6 20 14 Z" fill="#141414"></path></svg>
+<span class="wm">doomproof</span>
+</a>
+<p style="color: #A4A4AC">An antidote to doomscrolling. AI-powered learning that stays with you.</p>
+</div>
+<div class="fl"><a href="#problem">Problem</a><a href="#idea">Idea</a><a href="#story">Story</a><a href="#founder">Founder</a><a href="#waitlist">Waitlist</a></div>
+<span class="mono" style="color: #A4A4AC">hello@doomproof.app</span>
+</div>
+</div>
+<div class="giant" aria-hidden="true"><span>d</span><span>o</span><span>o</span><span>m</span><span>p</span><span>r</span><span>o</span><span>o</span><span>f</span></div>
+<div class="wrap legal"><span>© 2026 Doomproof · Bengaluru</span><span>Privacy · Terms</span></div>
+</footer>
+
+<div class="pill {{pillCls}}" aria-hidden="true"><span class="ring"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M6 13l6 6 6-6"></path></svg></span><span>Scrolled <b>{{metres}} m</b> on this page</span></div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#FF5B2E","options":["#FF5B2E","#7B61FF","#12B088","#2F8FF0"]},"$preview":{"width":1440,"height":7800}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { split: 50, touched: false, px: 0, deck: 0, joined: false };
+    this.last = new WeakMap();
+  }
+  componentDidMount() {
+    var self = this;
+    this.dead = false;
+    var mq = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+    this.reduced = !!(mq && mq.matches);
+    if (!this.reduced) {
+      var t0 = performance.now();
+      var loop = function (now) {
+        if (self.dead || self.state.touched) return;
+        var s = 50 + 30 * Math.sin((now - t0) / 1500);
+        self.setState({ split: Math.round(s * 10) / 10 });
+        self.raf = requestAnimationFrame(loop);
+      };
+      this.raf = requestAnimationFrame(loop);
+    }
+    this.pending = 0;
+    this.onScroll = function (e) {
+      var t = e.target;
+      var el = (t === document || !t || t.nodeType !== 1) ? (document.scrollingElement || document.documentElement) : t;
+      if (el.classList && el.classList.contains('hs')) return;
+      var top = el.scrollTop || 0;
+      var prev = self.last.has(el) ? self.last.get(el) : top;
+      self.last.set(el, top);
+      self.pending += Math.abs(top - prev);
+      if (self.sraf) return;
+      self.sraf = requestAnimationFrame(function () {
+        self.sraf = null;
+        var add = self.pending; self.pending = 0;
+        if (add > 0) self.setState(function (s) { return { px: s.px + add }; });
+      });
+    };
+    document.addEventListener('scroll', this.onScroll, true);
+  }
+  componentWillUnmount() {
+    this.dead = true;
+    if (this.raf) cancelAnimationFrame(this.raf);
+    if (this.sraf) cancelAnimationFrame(this.sraf);
+    document.removeEventListener('scroll', this.onScroll, true);
+  }
+  scrollStory(dir) {
+    var el = document.querySelector('[data-hs]');
+    if (!el) return;
+    var card = el.querySelector('.hcard');
+    var w = card ? card.getBoundingClientRect().width + 20 : 380;
+    el.scrollBy({ left: dir * w, behavior: this.reduced ? 'auto' : 'smooth' });
+  }
+  renderVals() {
+    var self = this;
+    var s = this.state;
+    var metres = (s.px * 0.0002646).toFixed(2);
+    var cards = [
+      { kick: 'Science · 1 min', title: 'Why is the sky blue?', text: 'Air scatters blue light more than red, so blue reaches you from every direction.', bg: '#FF5B2E', fg: '#141414' },
+      { kick: 'Money · 1 min', title: 'How does compound interest grow?', text: 'You earn interest on your interest, so growth speeds up over time.', bg: '#7B61FF', fg: '#FFFFFF' },
+      { kick: 'Ideas · 1 min', title: 'What did the Stoics mean by control?', text: 'Sort what you can control from what you can’t, and act on the first.', bg: '#12B088', fg: '#141414' },
+      { kick: 'Body · 1 min', title: 'How do vaccines teach your body?', text: 'A harmless preview of a germ, so your immune system knows the real one.', bg: '#FFC93C', fg: '#141414' }
+    ];
+    var n = cards.length;
+    var deck = cards.map(function (c, i) {
+      var pos = (i - s.deck + n) % n;
+      return { kick: c.kick, title: c.title, text: c.text, bg: c.bg, fg: c.fg, cls: 'p' + pos, hidden: pos === 0 ? 'false' : 'true' };
+    });
+    var join = function (e) { if (e && e.preventDefault) e.preventDefault(); self.setState({ joined: true }); };
+    return {
+      accent: this.props.accent ?? '#FF5B2E',
+      split: s.split,
+      onSplit: function (e) { var v = parseFloat(e.target.value); self.setState({ touched: true, split: isNaN(v) ? 50 : v }); },
+      onTouch: function () { if (!self.state.touched) self.setState({ touched: true }); },
+      metres: metres,
+      rulerX: (-(s.px * 0.2) % 500) + 'px',
+      pillCls: s.px > 400 ? 'show' : '',
+      deck: deck,
+      nextCard: function () { self.setState(function (st) { return { deck: (st.deck + 1) % n }; }); },
+      prev: function () { self.scrollStory(-1); },
+      next: function () { self.scrollStory(1); },
+      joined: s.joined,
+      notJoined: !s.joined,
+      join: join
+    };
+  }
+}
+</script>
+</body>
+</html>

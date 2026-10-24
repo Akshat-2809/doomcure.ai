@@ -1,0 +1,29 @@
+.story { background: var(--violet); color: var(--white); padding-block: 120px; timeline-scope: --hx; overflow: hidden; }
+.story :global(.tag) { background: transparent; box-shadow: inset 0 0 0 1.5px var(--white); color: var(--white); }
+.story :global(.tag) i { background: var(--sun); }
+.storyhead { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+.headcopy { display: flex; flex-direction: column; gap: 22px; max-width: 760px; }
+.arrows { display: flex; gap: 10px; }
+.arw { width: 56px; height: 56px; border-radius: 50%; border: 0; background: var(--white); color: var(--ink); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform .3s var(--spring); }
+.arw:hover { transform: scale(1.1); }
+
+.hs { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 56px clamp(20px, 4vw, 48px) 30px; scroll-timeline: --hx x; scrollbar-width: none; }
+/* No CSS scroll-behavior: smooth here. With scroll-snap it makes Chrome do a smooth snap on load, which ends LCP measurement.
+   The arrow buttons pass behavior: "smooth" themselves (StoryArrows.tsx). */
+.hs::-webkit-scrollbar { display: none; }
+.hs:focus-visible { outline: 3px solid var(--sun); outline-offset: -3px; }
+.hcard { flex: none; width: min(360px, 80vw); scroll-snap-align: start; border-radius: 30px; padding: 28px; display: flex; flex-direction: column; gap: 14px; min-height: 320px; background: var(--white); color: var(--ink); box-shadow: 0 8px 0 rgba(20,20,20,.9); position: relative; transition: transform .4s var(--spring); }
+.hcard:hover { transform: translateY(-6px) rotate(-1deg); }
+.n { font-family: var(--mono); font-size: 11.5px; color: var(--ink3); }
+.hcard h3 { font-size: 30px; line-height: 1; }
+.hcard p { color: var(--ink2); font-size: 16px; }
+.ic { width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 0 0 1.5px var(--ink); }
+.hcard.final { background: var(--sun); }
+
+.prog { height: 6px; border-radius: 9px; background: rgba(255,255,255,.25); overflow: hidden; margin-inline: clamp(20px, 4vw, 48px); }
+.prog i { display: block; height: 100%; background: var(--white); width: 30%; border-radius: 9px; }
+
+@supports (animation-timeline: view()) {
+  .prog i { width: 100%; transform-origin: left; animation: progx linear both; animation-timeline: --hx; }
+}
+@keyframes progx { from { transform: scaleX(.08); } to { transform: scaleX(1); } }

@@ -1,0 +1,30 @@
+.sec { padding-block: 130px; }
+.fgrid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 64px; align-items: start; }
+.fcard { position: sticky; top: 110px; border-radius: 36px; background: var(--orange); padding: 28px; box-shadow: inset 0 0 0 2px var(--ink), 0 10px 0 var(--ink); display: flex; flex-direction: column; gap: 18px; }
+.fphoto { aspect-ratio: 1; max-width: 100%; border-radius: 26px; background: var(--white); box-shadow: inset 0 0 0 2px var(--ink); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.ini { font-family: var(--disp); font-size: 120px; line-height: 1; }
+.lab { position: absolute; left: 14px; bottom: 12px; font-family: var(--mono); font-size: 10.5px; color: var(--ink3); }
+.name { display: flex; flex-direction: column; gap: 4px; }
+.nm { font-family: var(--disp); font-size: 32px; line-height: 1; }
+.triad { display: flex; flex-wrap: wrap; gap: 8px; }
+.triad span { font-weight: 700; font-size: 14px; padding: 8px 14px; border-radius: 999px; background: var(--white); box-shadow: inset 0 0 0 1.5px var(--ink); }
+
+.col { display: flex; flex-direction: column; gap: 28px; }
+.intro { display: flex; flex-direction: column; gap: 22px; }
+.chapters { display: flex; flex-direction: column; gap: 14px; }
+.ch { border-radius: 26px; background: var(--white); padding: 24px; box-shadow: inset 0 0 0 1.5px var(--line); display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 20px; transition: box-shadow .3s, transform .4s var(--spring); }
+.ch:hover { box-shadow: inset 0 0 0 2px var(--ink); transform: translateX(6px); }
+.yr { font-family: var(--mono); font-size: 12px; color: var(--ink3); padding-top: 4px; }
+.ch h3 { font-size: 22px; line-height: 1.1; margin-bottom: 6px; }
+.ch p { color: var(--ink2); font-size: 15.5px; }
+.ch ul { margin: 10px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+.ch li { font-family: var(--mono); font-size: 10.5px; padding: 5px 9px; border-radius: 999px; background: var(--paper); }
+
+@media (max-width: 1000px) {
+  .fgrid { grid-template-columns: minmax(0, 1fr); }
+  .fcard { position: relative; top: 0; }
+  .sec { padding-block: 96px; }
+}
+@media (max-width: 620px) {
+  .ch { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+}

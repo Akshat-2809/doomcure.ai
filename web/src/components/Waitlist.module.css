@@ -1,0 +1,15 @@
+.cta { background: var(--orange); position: relative; overflow: hidden; padding-block: 140px; }
+.ctain { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px; }
+.ctah { font-size: clamp(48px, 8vw, 128px); line-height: .9; letter-spacing: -.02em; }
+.cta :global(.lede) { color: var(--ink); }
+.fly { position: absolute; width: 120px; height: 150px; border-radius: 20px; box-shadow: inset 0 0 0 2px var(--ink), 0 6px 0 var(--ink); pointer-events: none; }
+.fly1 { left: 6%; top: 16%; background: var(--violet); transform: rotate(-14deg); animation: floaty 7s ease-in-out infinite alternate; }
+.fly2 { right: 7%; top: 12%; background: var(--sun); transform: rotate(12deg); animation: floaty 8s ease-in-out -2s infinite alternate; }
+.fly3 { left: 12%; bottom: 10%; background: var(--mint); transform: rotate(8deg); animation: floaty 6s ease-in-out -1s infinite alternate; }
+.fly4 { right: 12%; bottom: 12%; background: var(--white); transform: rotate(-8deg); animation: floaty 9s ease-in-out -3s infinite alternate; }
+
+@keyframes floaty { to { translate: 0 -26px; } }
+
+@media (max-width: 1000px) {
+  .fly { display: none; }
+}

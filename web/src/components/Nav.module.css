@@ -1,0 +1,11 @@
+.nav { position: sticky; top: 0; z-index: 60; padding-block: 14px; }
+.navin { display: flex; align-items: center; gap: 18px; padding: 8px 8px 8px 18px; border-radius: 999px; background: rgba(255,255,255,.82); backdrop-filter: blur(14px) saturate(1.5); -webkit-backdrop-filter: blur(14px) saturate(1.5); box-shadow: 0 0 0 1.5px var(--ink), 0 14px 30px -20px rgba(0,0,0,.35); flex-wrap: wrap; }
+.navlinks { display: flex; gap: 2px; flex: 1; justify-content: center; flex-wrap: wrap; }
+.nl { padding: 9px 14px; border-radius: 999px; font-weight: 600; font-size: 15px; text-decoration: none; color: var(--ink2); transition: background .25s, color .25s; }
+.nl:hover { background: var(--paper); color: var(--ink); }
+.nav :global(.btn) { min-height: 44px; padding: 0 20px; font-size: 15px; box-shadow: none; }
+.nav :global(.btn):hover { box-shadow: none; transform: scale(1.04); }
+
+@media (max-width: 620px) {
+  .navlinks { display: none; }
+}

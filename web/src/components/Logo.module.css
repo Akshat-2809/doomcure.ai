@@ -1,0 +1,2 @@
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.wm { font-family: var(--disp); font-size: 22px; letter-spacing: -.02em; line-height: 1; }

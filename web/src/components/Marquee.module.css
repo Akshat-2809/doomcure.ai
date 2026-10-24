@@ -1,0 +1,11 @@
+.marq { background: var(--ink); color: var(--white); overflow: hidden; padding-block: 22px; transform: rotate(-1.5deg); margin-inline: -20px; border-block: 2px solid var(--ink); }
+.track { display: flex; width: max-content; animation: marq 36s linear infinite; }
+.track span { display: inline-flex; align-items: center; gap: 34px; padding-right: 34px; font-family: var(--disp); font-size: 28px; white-space: nowrap; }
+.track s { text-decoration-color: var(--orange); text-decoration-thickness: 4px; color: #8A8A92; }
+.track em { font-style: normal; color: var(--orange); }
+
+@keyframes marq { to { transform: translateX(-50%); } }
+
+@media (max-width: 620px) {
+  .track span { font-size: 21px; }
+}

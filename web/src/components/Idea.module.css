@@ -1,0 +1,51 @@
+.sec { padding-block: 130px; }
+.quote { font-family: var(--disp); font-size: clamp(30px, 3.8vw, 54px); line-height: 1.08; letter-spacing: -.01em; max-width: 24ch; }
+.q { color: var(--orange); }
+.attr { font-family: var(--mono); font-size: 12px; color: var(--ink3); margin-top: 22px; display: block; }
+
+.pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 80px; }
+.pillar { background: var(--white); border-radius: 32px; padding: 28px; display: flex; flex-direction: column; gap: 16px; box-shadow: inset 0 0 0 2px var(--ink), 0 8px 0 var(--ink); transition: transform .45s var(--spring), box-shadow .45s var(--spring); min-height: 440px; }
+.pillar:hover { transform: translateY(-8px) rotate(-1deg); box-shadow: inset 0 0 0 2px var(--ink), 0 16px 0 var(--ink); }
+.pillar h3 { font-size: 30px; line-height: 1; }
+.pillar p { color: var(--ink2); font-size: 16px; }
+.vis { flex: 1; border-radius: 22px; background: var(--paper); position: relative; overflow: hidden; min-height: 190px; display: flex; align-items: center; justify-content: center; }
+
+/* curiosity orbit */
+.orbit { position: absolute; width: 150px; height: 150px; border-radius: 50%; border: 1.5px dashed rgba(20,20,20,.3); animation: spin 12s linear infinite; }
+.orbit i { position: absolute; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--disp); font-style: normal; font-size: 15px; box-shadow: inset 0 0 0 1.5px var(--ink); }
+.orbit i:nth-child(1) { top: -15px; left: 60px; background: var(--sun); }
+.orbit i:nth-child(2) { bottom: 10px; left: -6px; background: var(--mint); }
+.orbit i:nth-child(3) { bottom: 10px; right: -6px; background: var(--violet); color: #fff; }
+.core { width: 62px; height: 62px; border-radius: 50%; background: var(--orange); box-shadow: inset 0 0 0 2px var(--ink); display: flex; align-items: center; justify-content: center; font-family: var(--disp); font-size: 28px; animation: pulse 2.4s ease-in-out infinite; }
+
+/* retention bars */
+.keep { width: 100%; padding: 22px; display: flex; flex-direction: column; gap: 14px; }
+.krow { display: flex; flex-direction: column; gap: 6px; }
+.krow span { font-family: var(--mono); font-size: 10.5px; color: var(--ink2); }
+.kbar { height: 22px; border-radius: 8px; box-shadow: inset 0 0 0 1.5px var(--ink); overflow: hidden; background: var(--white); }
+.kbar i { display: block; height: 100%; }
+.kbar.fade i { background: var(--ink3); animation: fadeout 3.2s var(--ease) infinite; }
+.kbar.stay i { background: var(--mint); animation: fill 3.2s var(--ease) infinite; }
+
+/* card deck */
+.deck { position: relative; width: 100%; height: 100%; min-height: 190px; }
+.dc { position: absolute; left: 18px; right: 18px; top: 18px; bottom: 52px; border-radius: 18px; padding: 14px; box-shadow: inset 0 0 0 1.5px var(--ink); display: flex; flex-direction: column; gap: 6px; transition: transform .6s var(--spring), opacity .4s; }
+.dc b { font-family: var(--disp); font-weight: 400; font-size: 17px; line-height: 1.1; }
+.dc p { font-size: 12.5px; line-height: 1.35; }
+.p0 { z-index: 4; transform: none; }
+.p1 { z-index: 3; transform: translateY(-8px) scale(.95) rotate(3deg); }
+.p2 { z-index: 2; transform: translateY(-16px) scale(.9) rotate(-3deg); }
+.p3 { z-index: 1; transform: translate(-120%, 20px) rotate(-18deg); opacity: 0; }
+.next { position: absolute; z-index: 6; left: 50%; bottom: 8px; transform: translateX(-50%); min-height: 38px; padding: 0 16px; border-radius: 999px; border: 0; background: var(--ink); color: #fff; font: 700 13px var(--body); cursor: pointer; transition: transform .3s var(--spring); }
+.next:hover { transform: translateX(-50%) scale(1.06); }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pulse { 50% { transform: scale(1.12); } }
+@keyframes fadeout { 0% { width: 100%; opacity: 1; } 70%, 100% { width: 12%; opacity: .35; } }
+@keyframes fill { 0% { width: 10%; } 60%, 100% { width: 92%; } }
+
+@media (max-width: 1000px) {
+  .pillars { grid-template-columns: minmax(0, 1fr); }
+  .pillar { min-height: 0; }
+  .sec { padding-block: 96px; }
+}
