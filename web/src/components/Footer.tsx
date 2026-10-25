@@ -13,11 +13,11 @@ export function Footer() {
             <p style={{ color: "#A4A4AC" }}>An antidote to doomscrolling. AI-powered learning that stays with you.</p>
           </div>
           <nav className={styles.fl} aria-label="Footer">
-            <a href="#problem">Problem</a>
-            <a href="#idea">Idea</a>
-            <a href="#story">Story</a>
-            <a href="#founder">Founder</a>
-            <a href="#waitlist">Waitlist</a>
+            <Link href="/#problem">Problem</Link>
+            <Link href="/#idea">Idea</Link>
+            <Link href="/#story">Story</Link>
+            <Link href="/#founder">Founder</Link>
+            <Link href="/#waitlist">Waitlist</Link>
           </nav>
           <a className={`mono ${styles.mail}`} href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>
         </div>
@@ -27,7 +27,7 @@ export function Footer() {
       </div>
       <div className={`wrap ${styles.legal}`}>
         <span>© 2026 Doomcure · Bengaluru</span>
-        <span><Link href="/privacy">Privacy</Link> · <Link href="/terms">Terms</Link></span>
+        <span><Link href="/privacy">Privacy</Link> · <Link href="/terms">Terms</Link> · <Link href="/contact">Contact</Link></span>
       </div>
     </footer>
   );

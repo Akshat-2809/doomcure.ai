@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ACCENT } from "@/lib/site";
 import styles from "./Logo.module.css";
 
@@ -12,11 +13,11 @@ export function LogoMark({ size = 34, stroke = "#141414" }: { size?: number; str
   );
 }
 
-export function Logo({ href = "#top", size, stroke }: { href?: string; size?: number; stroke?: string }) {
+export function Logo({ href = "/#top", size, stroke }: { href?: string; size?: number; stroke?: string }) {
   return (
-    <a className={styles.logo} href={href} aria-label="Doomcure home">
+    <Link className={styles.logo} href={href} aria-label="Doomcure home">
       <LogoMark size={size} stroke={stroke} />
       <span className={styles.wm}>doomcure</span>
-    </a>
+    </Link>
   );
 }

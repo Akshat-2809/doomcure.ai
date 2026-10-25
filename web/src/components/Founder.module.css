@@ -2,12 +2,17 @@
 .fgrid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 64px; align-items: start; }
 .fcard { position: sticky; top: 110px; border-radius: 36px; background: var(--orange); padding: 28px; box-shadow: inset 0 0 0 2px var(--ink), 0 10px 0 var(--ink); display: flex; flex-direction: column; gap: 18px; }
 .fphoto { aspect-ratio: 1; max-width: 100%; border-radius: 26px; background: var(--white); box-shadow: inset 0 0 0 2px var(--ink); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-.ini { font-family: var(--disp); font-size: 120px; line-height: 1; }
-.lab { position: absolute; left: 14px; bottom: 12px; font-family: var(--mono); font-size: 10.5px; color: var(--ink3); }
+.fphoto img { width: 100%; height: 100%; object-fit: cover; }
+/* the frame's ink outline, drawn above the photo */
+.fphoto::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 2px var(--ink); pointer-events: none; }
 .name { display: flex; flex-direction: column; gap: 4px; }
 .nm { font-family: var(--disp); font-size: 32px; line-height: 1; }
 .triad { display: flex; flex-wrap: wrap; gap: 8px; }
 .triad span { font-weight: 700; font-size: 14px; padding: 8px 14px; border-radius: 999px; background: var(--white); box-shadow: inset 0 0 0 1.5px var(--ink); }
+.links { display: flex; gap: 8px; flex-wrap: wrap; padding-top: 18px; border-top: 1.5px solid rgba(20,20,20,.25); }
+.contactBtn { display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 0 18px; border-radius: 999px; background: var(--ink); color: var(--white); font: 700 14px var(--body); text-decoration: none; box-shadow: 0 4px 0 rgba(20,20,20,.35); transition: transform .35s var(--spring), box-shadow .35s var(--ease); }
+.contactBtn:hover { color: var(--white); transform: translateY(-3px); box-shadow: 0 7px 0 rgba(20,20,20,.35); }
+.contactBtn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(20,20,20,.35); }
 
 .col { display: flex; flex-direction: column; gap: 28px; }
 .intro { display: flex; flex-direction: column; gap: 22px; }

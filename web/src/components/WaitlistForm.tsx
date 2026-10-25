@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { joinWaitlist, useWaitlist, type WaitlistSource } from "@/lib/waitlist";
+import { joinWaitlist, useWaitlist, type WaitlistSource } from "@/lib/waitlistStore";
 import styles from "./WaitlistForm.module.css";
 
 type Props = { source: WaitlistSource; buttonLabel: string; full?: boolean };

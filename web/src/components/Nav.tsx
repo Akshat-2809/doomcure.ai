@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Logo } from "./Logo";
 import styles from "./Nav.module.css";
 
@@ -8,12 +9,12 @@ export function Nav() {
         <div className={styles.navin}>
           <Logo />
           <nav className={styles.navlinks} aria-label="Main">
-            <a className={styles.nl} href="#problem">The problem</a>
-            <a className={styles.nl} href="#idea">The idea</a>
-            <a className={styles.nl} href="#story">The story</a>
-            <a className={styles.nl} href="#founder">Founder</a>
+            <Link className={styles.nl} href="/#problem">The problem</Link>
+            <Link className={styles.nl} href="/#idea">The idea</Link>
+            <Link className={styles.nl} href="/#story">The story</Link>
+            <Link className={styles.nl} href="/#founder">Founder</Link>
           </nav>
-          <a className="btn btn-ink" href="#waitlist">Join the waitlist</a>
+          <Link className="btn btn-ink" href="/#waitlist">Join the waitlist</Link>
         </div>
       </div>
     </header>

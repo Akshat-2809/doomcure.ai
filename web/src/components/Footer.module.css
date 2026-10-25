@@ -1,5 +1,5 @@
 .foot { background: var(--ink); color: var(--white); padding-top: 72px; overflow: hidden; }
-.footrow { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+.footrow { position: relative; z-index: 1; display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
 .brand { display: flex; flex-direction: column; gap: 12px; max-width: 360px; }
 .foot a { color: var(--white); text-decoration: none; }
 .foot a:hover { color: var(--orange); }
@@ -9,7 +9,8 @@
 .giant { font-family: var(--disp); font-size: clamp(64px, 17vw, 250px); line-height: .85; letter-spacing: -.03em; text-align: center; padding-block: 40px 10px; white-space: nowrap; }
 .giant span { display: inline-block; transition: transform .5s var(--spring), color .3s; }
 .giant span:hover { transform: translateY(-14px) rotate(-6deg); color: var(--orange); }
-.legal { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-block: 22px 34px; border-top: 1px solid rgba(255,255,255,.14); font-family: var(--mono); font-size: 11px; color: #A4A4AC; }
+/* above the giant wordmark, whose glyphs overlap this row and would otherwise swallow clicks */
+.legal { position: relative; z-index: 1; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-block: 22px 34px; border-top: 1px solid rgba(255,255,255,.14); font-family: var(--mono); font-size: 11px; color: #A4A4AC; }
 .foot .legal a { color: #A4A4AC; }
 .foot .legal a:hover { color: var(--orange); }
 

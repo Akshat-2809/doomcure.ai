@@ -1,0 +1,48 @@
+.page { padding-block: 72px 130px; }
+.head { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; max-width: 860px; margin-bottom: 64px; }
+.title { font-size: clamp(48px, 7vw, 104px); line-height: .92; letter-spacing: -.025em; }
+.meta { font-family: var(--mono); font-size: 12px; letter-spacing: .02em; color: var(--ink3); }
+
+.layout { display: grid; grid-template-columns: minmax(0, 280px) minmax(0, 1fr); gap: 64px; align-items: start; }
+.toc { position: sticky; top: 110px; }
+.tocBox { background: var(--white); border-radius: 26px; padding: 22px; box-shadow: inset 0 0 0 2px var(--ink), 0 8px 0 var(--ink); }
+.tocBox summary { font-family: var(--mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink); cursor: pointer; list-style: none; margin-bottom: 12px; }
+.tocBox summary::-webkit-details-marker { display: none; }
+.tocBox ol { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.tocBox li + li a { border-top: 1px solid var(--line); }
+.tocBox a { display: flex; gap: 12px; padding: 9px 0; font-size: 14.5px; font-weight: 600; color: var(--ink2); text-decoration: none; transition: color .2s, padding .25s var(--ease); }
+.tocBox a:hover { color: var(--ink); padding-left: 6px; }
+.num { font-family: var(--mono); font-size: 11px; color: var(--ink3); padding-top: .35em; flex: none; }
+
+.doc { max-width: 72ch; display: flex; flex-direction: column; gap: 52px; color: var(--ink2); }
+.intro { display: flex; flex-direction: column; gap: 14px; font-size: 19px; color: var(--ink); }
+.section { display: flex; flex-direction: column; gap: 14px; }
+.section h2 { display: flex; gap: 14px; align-items: baseline; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.1; color: var(--ink); padding-bottom: 14px; border-bottom: 2px solid var(--ink); }
+.section h2 .num { font-size: 12px; padding-top: 0; color: var(--ink); background: var(--orange); border-radius: 999px; padding: 4px 9px; box-shadow: inset 0 0 0 1.5px var(--ink); transform: translateY(-4px); }
+.section h3 { font-size: 19px; color: var(--ink); margin-top: 8px; }
+.section p, .section li { font-size: 16.5px; line-height: 1.65; }
+.section ul, .section ol { margin: 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.section ul > li { position: relative; padding-left: 22px; }
+.section ul > li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 1.5px var(--ink); }
+.section ol { counter-reset: item; }
+.section ol > li { position: relative; padding-left: 34px; counter-increment: item; }
+.section ol > li::before { content: "(" counter(item, lower-alpha) ")"; position: absolute; left: 0; font-family: var(--mono); font-size: 13px; color: var(--ink3); top: .2em; }
+.section b, .section strong { color: var(--ink); font-weight: 700; }
+.section a { color: var(--ink); text-decoration-color: var(--orange); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+
+.tableWrap { overflow-x: auto; border-radius: 20px; background: var(--white); box-shadow: inset 0 0 0 1.5px var(--line); }
+.table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 14.5px; }
+.table th { text-align: left; font-family: var(--mono); font-size: 10.5px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink3); padding: 14px 16px; border-bottom: 1px solid var(--line); }
+.table td { padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--ink2); }
+.table tr:last-child td { border-bottom: 0; }
+.table td:first-child { color: var(--ink); font-weight: 600; }
+
+.callout { background: var(--sun); border-radius: 20px; padding: 18px 20px; box-shadow: inset 0 0 0 2px var(--ink); display: flex; flex-direction: column; gap: 6px; color: var(--ink); }
+.callout p { font-size: 15.5px; }
+
+@media (max-width: 1000px) {
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .toc { position: static; }
+  .tocBox summary { margin-bottom: 0; }
+  .tocBox[open] summary { margin-bottom: 12px; }
+}
