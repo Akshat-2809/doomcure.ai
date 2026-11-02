@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { LegalDoc, type LegalSection } from "@/components/LegalDoc";
 import s from "@/components/LegalDoc.module.css";
 import { LEGAL_LOCATION } from "@/lib/legal";
@@ -27,8 +26,8 @@ const SECTIONS: LegalSection[] = [
         <p>This policy explains how we handle personal data when you:</p>
         <ul>
           <li>visit doomcure.com (the &ldquo;Website&rdquo;);</li>
-          <li>join our waitlist;</li>
-          <li>send us a message through the contact form, or write to us by email.</li>
+          <li>use the waitlist or contact forms on the Website; or</li>
+          <li>write to us by email.</li>
         </ul>
         <p>
           We follow the Information Technology Act, 2000 and the Information Technology (Reasonable Security Practices and
@@ -46,27 +45,21 @@ const SECTIONS: LegalSection[] = [
     title: "Personal data we collect",
     body: (
       <>
+        <h3>The forms on the Website</h3>
+        <p>
+          The waitlist and contact forms do not send or store what you type. Your entry is checked and the confirmation is
+          shown entirely in your browser, and nothing you type in them reaches us or anyone else. Using a form does not add you
+          to the waitlist or send us a message. To join the waitlist or reach us, email {mail(CONTACT_EMAIL)}.
+        </p>
         <h3>Data you give us</h3>
         <ul>
           <li>
-            <b>Waitlist:</b> your email address, and which of the two sign-up forms on the Website you used.
-          </li>
-          <li>
-            <b>Contact form:</b> your name, email address and the message you write.
-          </li>
-          <li>
-            <b>Emails:</b> whatever you choose to include when you write to us.
+            <b>Emails:</b> your email address, your name if you include it, and whatever else you choose to include when
+            you write to us, including a request to join the waitlist.
           </li>
         </ul>
         <h3>Data collected automatically</h3>
         <ul>
-          <li>
-            <b>IP address:</b> used when you submit a form, to prevent spam and abuse. We store it only as a salted, one-way
-            hash, which cannot practically be turned back into your IP address.
-          </li>
-          <li>
-            <b>Browser information:</b> the user-agent string your browser sends when you submit a form.
-          </li>
           <li>
             <b>Server logs:</b> our hosting provider keeps standard request logs (IP address, date and time, page requested,
             browser type) for security and reliability.
@@ -106,23 +99,18 @@ const SECTIONS: LegalSection[] = [
             </thead>
             <tbody>
               <tr>
-                <td>Keep your place on the waitlist and tell you when you can try Doomcure</td>
-                <td>Email address, form used</td>
-                <td>Your consent, given when you join</td>
-              </tr>
-              <tr>
-                <td>Send a short welcome email confirming you&apos;re on the list</td>
+                <td>Keep your place on the waitlist, if you ask by email, and tell you when you can try Doomcure</td>
                 <td>Email address</td>
-                <td>Your consent</td>
+                <td>Your consent, given when you ask to join</td>
               </tr>
               <tr>
-                <td>Read and reply to your message</td>
-                <td>Name, email address, message</td>
+                <td>Read and reply to your email</td>
+                <td>Email address, name, anything you include</td>
                 <td>Your consent, and data you provided voluntarily for that purpose</td>
               </tr>
               <tr>
-                <td>Keep the Website secure and prevent spam and abuse</td>
-                <td>Hashed IP address, browser information, server logs</td>
+                <td>Keep the Website secure and prevent abuse</td>
+                <td>Server logs</td>
                 <td>Reasonable security practices required by law</td>
               </tr>
               <tr>
@@ -166,17 +154,7 @@ const SECTIONS: LegalSection[] = [
               <tr>
                 <td>Vercel Inc.</td>
                 <td>Website hosting and delivery</td>
-                <td>Server logs, form submissions in transit</td>
-              </tr>
-              <tr>
-                <td>Neon (Databricks, Inc.)</td>
-                <td>Database hosting for waitlist sign-ups and contact messages</td>
-                <td>Email, name and message (contact form only), hashed IP, browser information</td>
-              </tr>
-              <tr>
-                <td>Resend (Plus Five Five, Inc.)</td>
-                <td>Sending the welcome email, message acknowledgements and our internal notifications</td>
-                <td>Email address; name and message for contact-form emails</td>
+                <td>Server logs</td>
               </tr>
             </tbody>
           </table>
@@ -216,15 +194,11 @@ const SECTIONS: LegalSection[] = [
       <>
         <ul>
           <li>
-            <b>Waitlist sign-ups:</b> until you ask us to remove you, or until we close the waitlist, whichever comes first.
+            <b>Waitlist requests:</b> until you ask us to remove you, or until we close the waitlist, whichever comes first.
             We review the list at least once every 24 months and delete entries we no longer need.
           </li>
           <li>
-            <b>Contact messages and email correspondence:</b> for up to 24 months after our last exchange, then deleted.
-          </li>
-          <li>
-            <b>Hashed IP addresses and browser information</b> are kept with the sign-up or message they belong to, and
-            deleted with it.
+            <b>Email correspondence:</b> for up to 24 months after our last exchange, then deleted.
           </li>
           <li>
             <b>Server logs</b> are kept by our hosting provider for a short period, typically no more than 30 days.
@@ -245,9 +219,7 @@ const SECTIONS: LegalSection[] = [
         </p>
         <ul>
           <li>encryption of data in transit (TLS) and at rest;</li>
-          <li>access limited to the people who need it, with multi-factor authentication on our accounts;</li>
-          <li>storing IP addresses only as salted one-way hashes;</li>
-          <li>limits on how many forms can be submitted from one network, to stop abuse; and</li>
+          <li>access limited to the people who need it, with multi-factor authentication on our accounts; and</li>
           <li>choosing service providers with strong security practices, and reviewing our controls regularly.</li>
         </ul>
         <p>
@@ -280,8 +252,8 @@ const SECTIONS: LegalSection[] = [
           <li>have your grievances addressed by us, and then, if you are not satisfied, by the Data Protection Board of India.</li>
         </ol>
         <p>
-          To exercise any of these rights, email {mail(CONTACT_EMAIL)} with the subject &ldquo;Privacy request&rdquo;, or use
-          our <Link href="/contact">contact form</Link>. We may ask you to confirm your identity before acting on the request.
+          To exercise any of these rights, email {mail(CONTACT_EMAIL)} with the subject &ldquo;Privacy request&rdquo;. The
+          contact form on the Website does not send messages, so please use email. We may ask you to confirm your identity before acting on the request.
           We will respond within 30 days.
         </p>
         <p>
@@ -296,8 +268,9 @@ const SECTIONS: LegalSection[] = [
     title: "Children",
     body: (
       <p>
-        The waitlist and contact form are meant for people aged 18 or over. We do not knowingly collect personal data from
-        children. If you believe a child has sent us personal data, please contact us and we will delete it.
+        The waitlist is meant for people aged 18 or over. The forms on the Website do not send us anything, so we receive no
+        personal data through them. We do not knowingly collect personal data from children. If you believe a child has
+        emailed us personal data, please contact us and we will delete it.
       </p>
     ),
   },
@@ -346,8 +319,8 @@ const SECTIONS: LegalSection[] = [
     title: "Contact us",
     body: (
       <p>
-        For any question about this policy or how we handle personal data, write to {mail(CONTACT_EMAIL)} or use our{" "}
-        <Link href="/contact">contact page</Link>.
+        For any question about this policy or how we handle personal data, write to {mail(CONTACT_EMAIL)}. This email
+        address is the way to reach us; the contact form on the Website does not send messages.
       </p>
     ),
   },

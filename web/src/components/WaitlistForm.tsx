@@ -16,13 +16,13 @@ export function WaitlistForm({ source, buttonLabel, full }: Props) {
   const errorId = `${source}-error`;
 
   // Only the form the visitor used announces the result.
-  const live = status === "submitting" ? "Joining the waitlist…" : status === "error" ? message : joined && submittedHere ? SUCCESS : "";
+  const live = status === "error" ? message : joined && submittedHere ? SUCCESS : "";
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     setSubmittedHere(true);
-    void joinWaitlist(source, String(data.get("email") ?? ""), String(data.get("website") ?? ""));
+    joinWaitlist(source, String(data.get("email") ?? ""));
   }
 
   return (
@@ -42,12 +42,7 @@ export function WaitlistForm({ source, buttonLabel, full }: Props) {
               aria-invalid={status === "error" || undefined}
               aria-describedby={status === "error" ? errorId : undefined}
             />
-            <div className={styles.hp} aria-hidden="true">
-              <label htmlFor={`${source}-website`}>Website</label>
-              <input id={`${source}-website`} name="website" type="text" tabIndex={-1} autoComplete="off" />
-            </div>
-            <button type="submit" className="btn btn-ink" disabled={status === "submitting"}>
-              {status === "submitting" && <span className={styles.spin} aria-hidden="true" />}
+            <button type="submit" className="btn btn-ink">
               {buttonLabel}
             </button>
           </form>

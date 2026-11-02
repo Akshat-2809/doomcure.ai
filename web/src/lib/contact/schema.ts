@@ -17,16 +17,9 @@ export const contactSchema = z.object({
     .trim()
     .min(10, "Please write a little more, at least 10 characters.")
     .max(5000, "That message is too long. Please keep it under 5,000 characters."),
-  // Honeypot: real visitors never see or fill this.
-  website: z.string().optional().default(""),
 });
 
 export type ContactState =
   | { status: "idle" }
   | { status: "success" }
-  | {
-      status: "error";
-      message: string;
-      fieldErrors?: Partial<Record<ContactField, string>>;
-      values?: Partial<Record<ContactField, string>>;
-    };
+  | { status: "error"; message: string; fieldErrors: Partial<Record<ContactField, string>> };

@@ -69,7 +69,12 @@ const SECTIONS: LegalSection[] = [
     title: "The waitlist and contact form",
     body: (
       <>
-        <p>When you join the waitlist or contact us through the Website:</p>
+        <p>
+          The waitlist and contact forms on the Website do not send or store what you type. They check your entry and show a
+          confirmation in your browser only, so using them does not add you to the waitlist or send us a message. To join
+          the waitlist or contact us, email {mail(CONTACT_EMAIL)}.
+        </p>
+        <p>When you write to us to join the waitlist or for any other reason:</p>
         <ul>
           <li>the email address and other information you give must be your own and accurate;</li>
           <li>
@@ -245,7 +250,8 @@ const SECTIONS: LegalSection[] = [
     title: "Contact us",
     body: (
       <p>
-        For any question about these Terms, write to {mail(CONTACT_EMAIL)} or use our <Link href="/contact">contact page</Link>.
+        For any question about these Terms, write to {mail(CONTACT_EMAIL)}. The contact form on the Website does not send
+        messages, so please use email.
       </p>
     ),
   },

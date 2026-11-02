@@ -12,10 +12,4 @@ export const waitlistSchema = z.object({
     .max(254, "That email is too long.")
     .pipe(z.email("That email doesn't look quite right. Check it and try again.")),
   source: z.enum(WAITLIST_SOURCES, "Unknown form."),
-  // Honeypot: real visitors never see or fill this.
-  website: z.string().optional().default(""),
 });
-
-export type WaitlistResult =
-  | { status: "joined" | "already_joined" }
-  | { status: "error"; message: string };
