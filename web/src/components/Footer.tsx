@@ -26,7 +26,7 @@ export function Footer() {
         {"doomcure".split("").map((ch, i) => <span key={i}>{ch}</span>)}
       </div>
       <div className={`wrap ${styles.legal}`}>
-        <span>© 2026 Doomcure · Bengaluru</span>
+        <span>© 2026 Doomcure · All rights reserved · Bengaluru</span>
         <span><Link href="/privacy">Privacy</Link> · <Link href="/terms">Terms</Link> · <Link href="/contact">Contact</Link></span>
       </div>
     </footer>
